@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Thumbnail Downloader</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!--
+    https://img.youtube.com/vi/Wgptcjf7vkM/maxresdefault.jpg
+    https://img.youtube.com/vi/7jTOZWbW91s/hqdefault.jpg
+    https://img.youtube.com/vi/7jTOZWbW91s/mqdefault.jpg-->
+
+
+    <input type="text" name="" id="url" placeholder="Enter Video URL">
+    <button onclick="grab()">GRAB</button>
+    <br><hr>
+    <img width="600px" src="" alt="" id="maxres" srcset=""><br><hr>
+    <img width="400px" src="" alt="" id="hq" srcset=""><br><hr>
+    <img width="200px" src="" alt="" id="mq" srcset=""><br><hr>
+
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(document.getElementById('url').value);
+            if (results == null)
+                return "";
+            else
+                return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        function grab() {
+            id = getParameterByName('v');
+            document.getElementById('maxres').src = "https://img.youtube.com/vi/"+ id +"/maxresdefault.jpg";
+            document.getElementById('hq').src = "https://img.youtube.com/vi/"+ id +"/hqdefault.jpg";
+            document.getElementById('mq').src = "https://img.youtube.com/vi/"+ id +"/mqdefault.jpg";
+        }
+    </script>
+</body>
+
+</html>
