@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Thumbnail Downloader</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    header {
+        background-color: aqua;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 20px;
+    }
+
+    #url {
+        width: 400px;
+    }
+
+    button {
+        width: 90px;
+    }
+
+    input,
+    button {
+        padding: 8px;
+        margin-left: 0px;
+    }
+    #body {
+        text-align: center;
+        padding: 20px;
+    }
+    #body img {
+        margin: 40px;
+    }
+    footer {
+        position: fixed;
+        top: 90%;
+        left: 50%;
+        transform: translate(-50% , -50%);
+        background-color:aquamarine;
+        text-align: center;
+        padding: 8px;
+        margin: 4px;
+        display: inline-block;
+        border-radius: 10px;
+    }
+    .sep {
+        margin-bottom: 80px;
+    }
+    
+</style>
+
+<body>
+    <!--
+    https://img.youtube.com/vi/Wgptcjf7vkM/maxresdefault.jpg
+    https://img.youtube.com/vi/7jTOZWbW91s/hqdefault.jpg
+    https://img.youtube.com/vi/7jTOZWbW91s/mqdefault.jpg-->
+
+    <header>
+        <img width="60px"
+            src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-youtube-circle-512.png"
+            alt="" srcset="">
+        <h1 style="display: inline-block; margin-left: 20px; margin-right: 20px;">YTThumb Grab</h1>
+        <input type="text" name="" id="url" placeholder="Enter Video URL" class="btn btn-outline-info">
+        <button onclick="grab()" class="btn btn-success">GRAB</button>
+        <input type="text" id="myInput" class="btn btn-primary" value="" name="">
+        <button onclick="myFunction()" class="btn btn-outline-info">SHARE</button>
+    </header>
+    <br>
+    <div id="body">
+        <h2>Here are The Images That You Want </h2>
+        <img width="500px"
+            src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-youtube-circle-512.png"
+            alt="" class="img-thumbnail" id="maxres" srcset="">
+            <br>
+            <button class="btn btn-outline-warning" onclick="dl('maxres')">Download</button>
+            <br>
+        <img width="400px"
+            src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-youtube-circle-512.png"
+            alt="" class="img-thumbnail" id="hq" srcset="">
+            <br>
+            <button class="btn btn-outline-warning" onclick="dl('hq')">Download</button>
+            <br>
+        <img width="200px"
+            src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-youtube-circle-512.png"
+            alt="" class="img-thumbnail" id="mq" srcset="">
+            <br>
+            <button class="btn btn-outline-warning" onclick="dl('mq')">Download</button>
+            <br>
+    </div>
+    <div class="sep"></div>
+
+    <footer>
+        <h3>A Product From <a href="https://toolade-home.blogspot.com/">ToolAde-SHADE</a> </h3>
+    </footer>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(document.getElementById('url').value);
+            if (results == null)
+                return "";
+            else
+                return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        function grab() {
+            id = getParameterByName('v');
+            document.getElementById('maxres').src = "https://img.youtube.com/vi/" + id + "/maxresdefault.jpg";
+            document.getElementById('hq').src = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
+            document.getElementById('mq').src = "https://img.youtube.com/vi/" + id + "/mqdefault.jpg";
+            document.getElementById('myInput').value = "Here I Found an Awesome Website \n Where we can Download YouTube Thumbnail :- " + document.location.href + "?id="+ getParameterByName('v') ;
+
+        }
+        function dl(a) {
+            window.open(document.getElementById(a).src);
+        }
+        function myFunction() {
+            var copyText = document.getElementById("myInput") ;
+            copyText.select();
+            copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+            alert("Copied the text: " + copyText.value);
+
+        }
+
+    </script>
+</body>
+
+</html>
